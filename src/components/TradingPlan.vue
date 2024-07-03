@@ -49,8 +49,6 @@ const executionTf = ref('h4');
 
 // methods
 
-const reverseTrend =  (trend) => trendReverser[trend];
-
 const getPhase = computed(() => {
   if (executionTf.value === 'd1') {
     return phases[d1SwingTrend.value][d1InternalTrend.value][position.value];
@@ -89,10 +87,10 @@ const download = () => {
       <div class="col-span-1 flex flex-col gap-y-2">
         <h1 class="text-3xl font-bold mb-2">Trend</h1>
 
-        <label class="text-xl">D1 Swing: <button @click="() => d1SwingTrend = reverseTrend(d1SwingTrend)">{{trends[d1SwingTrend]}}</button></label>
-        <label class="text-xl">D1 Internal: <button @click="() => d1InternalTrend = reverseTrend(d1InternalTrend)">{{trends[d1InternalTrend]}}</button></label>
-        <label class="text-xl">H4 Swing: <button @click="() => h4SwingTrend = reverseTrend(h4SwingTrend)">{{trends[h4SwingTrend]}}</button></label>
-        <label class="text-xl">H4 Internal: <button @click="() => h4InternalTrend = reverseTrend(h4InternalTrend)">{{trends[h4InternalTrend]}}</button></label>
+        <label class="text-xl">D1 Swing: <button @click="() => d1SwingTrend = trendReverser[d1SwingTrend]">{{trends[d1SwingTrend]}}</button></label>
+        <label class="text-xl">D1 Internal: <button @click="() => d1InternalTrend = trendReverser[d1InternalTrend]">{{trends[d1InternalTrend]}}</button></label>
+        <label class="text-xl">H4 Swing: <button @click="() => h4SwingTrend = trendReverser[h4SwingTrend]">{{trends[h4SwingTrend]}}</button></label>
+        <label class="text-xl">H4 Internal: <button @click="() => h4InternalTrend = trendReverser[h4InternalTrend]">{{trends[h4InternalTrend]}}</button></label>
 
         <h1 class="text-3xl font-bold my-2">Position</h1>
         <label class="text-xl flex-row align-middle" for="position">
@@ -149,7 +147,6 @@ const download = () => {
           <input type="checkbox">
           Plenty of room next to supply/demand
         </label>
-
       </div>
     </div>
   </div>
