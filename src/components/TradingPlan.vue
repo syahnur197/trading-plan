@@ -4,6 +4,49 @@ import { saveAs } from 'file-saver';
 import html2canvas from 'html2canvas';
 
 // constants
+const tradingQuotes = [
+    "The goal of a successful trader is to make the best trades. Money is secondary. - Alexander Elder",
+    "Every trader has strengths and weaknesses. Some are good at following trends, others are good at playing the ranges. Recognize what you are good at and leverage that. - Jack Schwager",
+    "In trading, it's not about how much you make but rather how much you don’t lose. - Bernard Baruch",
+    "The stock market is filled with individuals who know the price of everything, but the value of nothing. - Philip Fisher",
+    "It’s not whether you’re right or wrong that’s important, but how much money you make when you’re right and how much you lose when you’re wrong. - George Soros",
+    "Opportunities come infrequently. When it rains gold, put out the bucket, not the thimble. - Warren Buffett",
+    "The biggest risk is not taking any risk. In a world that is changing really quickly, the only strategy that is guaranteed to fail is not taking risks. - Mark Zuckerberg",
+    "Do more of what works and less of what doesn’t. - Steve Clark",
+    "Amateurs think about how much money they can make. Professionals think about how much money they could lose. - Jack Schwager",
+    "The four most dangerous words in investing are: 'This time it’s different.' - Sir John Templeton",
+    "Risk comes from not knowing what you’re doing. - Warren Buffett",
+    "The market is a device for transferring money from the impatient to the patient. - Warren Buffett",
+    "The trend is your friend until the end when it bends. - Ed Seykota",
+    "Plan your trade and trade your plan. - Linda Raschke",
+    "It takes 20 years to build a reputation and five minutes to ruin it. If you think about that, you’ll do things differently. - Warren Buffett",
+    "In investing, what is comfortable is rarely profitable. - Robert Arnott",
+    "Trading doesn’t just reveal your character, it also builds it if you stay in the game long enough. - Yvan Byeajee",
+    "Good traders manage the downside; they don’t worry about the upside. - Mark Minervini",
+    "Letting losses run is the most serious mistake made by most investors. - William O’Neil",
+    "Successful trading is about making small profits consistently, managing risk, and controlling your emotions. - Unknown",
+    "Markets can remain irrational longer than you can remain solvent. - John Maynard Keynes",
+    "Don't focus on making money; focus on protecting what you have. - Paul Tudor Jones",
+    "The key to trading success is emotional discipline. If intelligence were the key, there would be a lot more people making money trading. - Victor Sperandeo",
+    "The elements of good trading are: (1) Cutting losses, (2) Cutting losses, and (3) Cutting losses. If you can follow these three rules, you may have a chance. - Ed Seykota",
+    "You learn more from your losses than your wins. - Unknown",
+    "The trick is to stop thinking of it as 'your' money. - Unknown",
+    "The goal of a successful trader is to make the best trades. Money is secondary. - Alexander Elder",
+    "The game taught me the game. And it didn’t spare me the rod while teaching. - Jesse Livermore",
+    "An investor without investment objectives is like a traveler without a destination. - Ralph Seger",
+    "The most important quality for an investor is temperament, not intellect. - Warren Buffett",
+    "Every once in a while, the market does something so stupid it takes your breath away. - Jim Cramer",
+    "I’m only rich because I know when I’m wrong. I basically have survived by recognizing my mistakes. - George Soros",
+    "Trade with an edge, manage risk, be consistent, and keep it simple. - Unknown",
+    "Confidence is not 'I will profit on this trade.' Confidence is 'I will be fine if I don't profit from this trade.' - Yvan Byeajee",
+    "Do not be embarrassed by your failures, learn from them and start again. - Richard Branson",
+    "If most traders would learn to sit on their hands 50 percent of the time, they would make a lot more money. - Bill Lipschutz",
+    "The goal of a successful trader is to make the best trades. Money is secondary. - Alexander Elder",
+    "Losing a position is aggravating, whereas losing your nerve is devastating. - Ed Seykota",
+    "The goal of a successful trader is to make the best trades. Money is secondary. - Alexander Elder",
+    "It is not the strongest of the species that survive, nor the most intelligent, but the one most responsive to change. - Charles Darwin",
+];
+
 const trends = {
   uptrend: '🟢',
   downtrend: '🔴',
@@ -82,6 +125,9 @@ const download = () => {
     <div id="capture" class="grid grid-cols-2 gap-x-4 gap-y-4 my-12 px-4 py-4">
       <div class="col-span-2">
         <h1 class="text-4xl font-bold">Trading Plan</h1>
+        <h3 class="italic text-gray-600">
+          {{tradingQuotes[Math.floor(Math.random() * tradingQuotes.length)]}}
+        </h3>
       </div>
 
       <div class="col-span-2 flex flex-col gap-y-2 mb-2">
