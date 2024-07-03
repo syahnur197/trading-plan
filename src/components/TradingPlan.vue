@@ -233,6 +233,34 @@ const download = () => {
           Plenty of room next to supply/demand
         </label>
       </div>
+
+      <div class="col-span-2 flex flex-col gap-y-2">
+        <h1 class="text-3xl font-bold mb-2">Declaration</h1>
+        <label class="text-lg">
+          <input type="checkbox">
+          I have a clear trade plan with defined entry, exit points, and a rationale based on my strategy.
+        </label>
+        <label class="text-lg">
+          <input type="checkbox">
+          I am risking 0.5% of my capital on this trade and have set a stop-loss order accordingly.
+        </label>
+        <label class="text-lg">
+          <input type="checkbox">
+          I have set a realistic profit target and calculated the appropriate position size.
+        </label>
+        <label class="text-lg">
+          <input type="checkbox">
+          I have performed thorough technical analysis to support this trade setup.
+        </label>
+        <label class="text-lg">
+          <input type="checkbox">
+          I am in a clear and rational state of mind, free from emotional biases, and will follow my plan without deviation.
+        </label>
+        <label class="text-lg">
+          <input type="checkbox">
+          I accept the outcome of this trade, whether it results in a profit or a loss, and will use it as a learning opportunity.
+        </label>
+      </div>
     </div>
   </div>
 
