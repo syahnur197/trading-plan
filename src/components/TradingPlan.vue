@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { saveAs } from 'file-saver';
 import html2canvas from 'html2canvas';
 
+// constants
 const trends = {
   uptrend: '🟢',
   downtrend: '🔴',
@@ -36,15 +37,19 @@ const phases = {
   }
 }
 
+// data
+
 const d1SwingTrend = ref('uptrend')
 const d1InternalTrend = ref('uptrend')
 const h4SwingTrend = ref('uptrend')
 const h4InternalTrend = ref('uptrend')
 
-const reverseTrend =  (trend) => trendReverser[trend];
+const position = ref('buy');
+const executionTf = ref('h4');
 
-const position = defineModel('position',{default: 'buy'});
-const executionTf = defineModel('executionTf', {default: 'h4'});
+// methods
+
+const reverseTrend =  (trend) => trendReverser[trend];
 
 const getPhase = computed(() => {
   if (executionTf.value === 'd1') {
