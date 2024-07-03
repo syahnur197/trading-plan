@@ -105,6 +105,8 @@ const d1SwingTrend = ref('uptrend')
 const d1InternalTrend = ref('uptrend')
 const h4SwingTrend = ref('uptrend')
 const h4InternalTrend = ref('uptrend')
+const m15SwingTrend = ref('uptrend')
+const m15InternalTrend = ref('uptrend')
 
 const position = ref('buy');
 const executionTf = ref('h4');
@@ -117,6 +119,9 @@ const getPhase = computed(() => {
   }
   if (executionTf.value === 'h4') {
     return phases[h4SwingTrend.value][h4InternalTrend.value][position.value];
+  }
+  if (executionTf.value === 'm15') {
+    return phases[m15SwingTrend.value][m15InternalTrend.value][position.value];
   }
 })
 
@@ -156,8 +161,11 @@ const download = () => {
           <tr>
             <th colspan="2" class="border">D1</th>
             <th colspan="2" class="border">H4</th>
+            <th colspan="2" class="border">M15</th>
           </tr>
           <tr>
+            <th class="border">Swing</th>
+            <th class="border">Internal</th>
             <th class="border">Swing</th>
             <th class="border">Internal</th>
             <th class="border">Swing</th>
@@ -168,6 +176,8 @@ const download = () => {
             <td class="border text-center"><button @click="() => d1InternalTrend = trendReverser[d1InternalTrend]">{{trends[d1InternalTrend]}}</button></td>
             <td class="border text-center"><button @click="() => h4SwingTrend = trendReverser[h4SwingTrend]">{{trends[h4SwingTrend]}}</button></td>
             <td class="border text-center"><button @click="() => h4InternalTrend = trendReverser[h4InternalTrend]">{{trends[h4InternalTrend]}}</button></td>
+            <td class="border text-center"><button @click="() => m15SwingTrend = trendReverser[m15SwingTrend]">{{trends[m15SwingTrend]}}</button></td>
+            <td class="border text-center"><button @click="() => m15InternalTrend = trendReverser[m15InternalTrend]">{{trends[m15InternalTrend]}}</button></td>
           </tr>
         </table>
       </div>
@@ -194,6 +204,10 @@ const download = () => {
           <label class="text-xl flex-row align-middle" for="executionTf">
             <input type="radio" name="executionTf" value="h4" v-model="executionTf">
             H4
+          </label>
+          <label class="text-xl flex-row align-middle" for="executionTf">
+            <input type="radio" name="executionTf" value="h4" v-model="executionTf">
+            M15
           </label>
         </div>
 
