@@ -75,8 +75,8 @@ const download = () => {
 </script>
 
 <template>
-  <div class="w-2/3 mx-auto">
-    <div class="flex flex-row justify-end my-4">
+  <div class="md:w-2/3 mx-auto">
+    <div class="flex flex-row justify-end my-4 px-4">
       <button class="bg-teal-400 py-2 px-4 hover:bg-teal-300 text-teal-800" @click="download">Download</button>
     </div>
     <div id="capture" class="grid grid-cols-2 gap-x-4 gap-y-4 my-12 px-4 py-4">
@@ -84,7 +84,7 @@ const download = () => {
         <h1 class="text-4xl font-bold">Trading Plan</h1>
       </div>
 
-      <div class="col-span-1 flex flex-col gap-y-2">
+      <div class="col-span-2 md:col-span-1 flex flex-col gap-y-2">
         <h1 class="text-3xl font-bold mb-2">Trend</h1>
 
         <label class="text-xl">D1 Swing: <button @click="() => d1SwingTrend = trendReverser[d1SwingTrend]">{{trends[d1SwingTrend]}}</button></label>
@@ -93,31 +93,35 @@ const download = () => {
         <label class="text-xl">H4 Internal: <button @click="() => h4InternalTrend = trendReverser[h4InternalTrend]">{{trends[h4InternalTrend]}}</button></label>
 
         <h1 class="text-3xl font-bold my-2">Position</h1>
-        <label class="text-xl flex-row align-middle" for="position">
-          <input type="radio" name="position" value="buy" v-model="position">
-          Buy
-        </label>
-        <label class="text-xl flex-row align-middle" for="position">
-          <input type="radio" name="position" value="sell" v-model="position">
-          Sell
-        </label>
+        <div class="flex flex-row md:flex-col gap-2">
+          <label class="text-xl flex-row align-middle" for="position">
+            <input type="radio" name="position" value="buy" v-model="position">
+            Buy
+          </label>
+          <label class="text-xl flex-row align-middle" for="position">
+            <input type="radio" name="position" value="sell" v-model="position">
+            Sell
+          </label>
+        </div>
 
         <h1 class="text-3xl font-bold my-2">Execution Timeframe</h1>
-        <label class="text-xl flex-row align-middle" for="executionTf">
-          <input type="radio" name="executionTf" value="d1" v-model="executionTf">
-          D1
-        </label>
-        <label class="text-xl flex-row align-middle" for="executionTf">
-          <input type="radio" name="executionTf" value="h4" v-model="executionTf">
-          H4
-        </label>
+        <div class="flex flex-row md:flex-col gap-2">
+          <label class="text-xl flex-row align-middle" for="executionTf">
+            <input type="radio" name="executionTf" value="d1" v-model="executionTf">
+            D1
+          </label>
+          <label class="text-xl flex-row align-middle" for="executionTf">
+            <input type="radio" name="executionTf" value="h4" v-model="executionTf">
+            H4
+          </label>
+        </div>
 
         <h1 class="text-3xl font-bold my-2">Phase</h1>
         <label class="text-xl font-bold" v-html="getPhase">
         </label>
       </div>
 
-      <div class="col-span-1 flex flex-col gap-y-2">
+      <div class="col-span-2 md:col-span-1 flex flex-col gap-y-2">
         <h1 class="text-3xl font-bold mb-2">Setup</h1>
         <label class="text-xl">
           <input type="checkbox">
