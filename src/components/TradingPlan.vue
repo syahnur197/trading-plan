@@ -206,7 +206,7 @@ const download = () => {
             H4
           </label>
           <label class="text-xl flex-row align-middle" for="executionTf">
-            <input type="radio" name="executionTf" value="h4" v-model="executionTf">
+            <input type="radio" name="executionTf" value="m15" v-model="executionTf">
             M15
           </label>
         </div>
