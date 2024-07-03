@@ -161,23 +161,27 @@ const download = () => {
           <tr>
             <th colspan="2" class="border">D1</th>
             <th colspan="2" class="border">H4</th>
-            <th colspan="2" class="border">M15</th>
+            <th v-if="executionTf === 'm15'" colspan="2" class="border">M15</th>
           </tr>
           <tr>
             <th class="border">Swing</th>
             <th class="border">Internal</th>
             <th class="border">Swing</th>
             <th class="border">Internal</th>
-            <th class="border">Swing</th>
-            <th class="border">Internal</th>
+            <template v-if="executionTf === 'm15'">
+              <th class="border">Swing</th>
+              <th class="border">Internal</th>
+            </template>
           </tr>
           <tr>
             <td class="border text-center"><button @click="() => d1SwingTrend = trendReverser[d1SwingTrend]">{{trends[d1SwingTrend]}}</button></td>
             <td class="border text-center"><button @click="() => d1InternalTrend = trendReverser[d1InternalTrend]">{{trends[d1InternalTrend]}}</button></td>
             <td class="border text-center"><button @click="() => h4SwingTrend = trendReverser[h4SwingTrend]">{{trends[h4SwingTrend]}}</button></td>
             <td class="border text-center"><button @click="() => h4InternalTrend = trendReverser[h4InternalTrend]">{{trends[h4InternalTrend]}}</button></td>
-            <td class="border text-center"><button @click="() => m15SwingTrend = trendReverser[m15SwingTrend]">{{trends[m15SwingTrend]}}</button></td>
-            <td class="border text-center"><button @click="() => m15InternalTrend = trendReverser[m15InternalTrend]">{{trends[m15InternalTrend]}}</button></td>
+            <template v-if="executionTf === 'm15'">
+              <td class="border text-center"><button @click="() => m15SwingTrend = trendReverser[m15SwingTrend]">{{trends[m15SwingTrend]}}</button></td>
+              <td class="border text-center"><button @click="() => m15InternalTrend = trendReverser[m15InternalTrend]">{{trends[m15InternalTrend]}}</button></td>
+            </template>
           </tr>
         </table>
       </div>
