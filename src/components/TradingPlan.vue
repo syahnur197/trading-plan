@@ -84,14 +84,30 @@ const download = () => {
         <h1 class="text-4xl font-bold">Trading Plan</h1>
       </div>
 
-      <div class="col-span-2 md:col-span-1 flex flex-col gap-y-2">
+      <div class="col-span-2 flex flex-col gap-y-2 mb-2">
         <h1 class="text-3xl font-bold mb-2">Trend</h1>
 
-        <label class="text-xl">D1 Swing: <button @click="() => d1SwingTrend = trendReverser[d1SwingTrend]">{{trends[d1SwingTrend]}}</button></label>
-        <label class="text-xl">D1 Internal: <button @click="() => d1InternalTrend = trendReverser[d1InternalTrend]">{{trends[d1InternalTrend]}}</button></label>
-        <label class="text-xl">H4 Swing: <button @click="() => h4SwingTrend = trendReverser[h4SwingTrend]">{{trends[h4SwingTrend]}}</button></label>
-        <label class="text-xl">H4 Internal: <button @click="() => h4InternalTrend = trendReverser[h4InternalTrend]">{{trends[h4InternalTrend]}}</button></label>
+        <table>
+          <tr>
+            <th colspan="2" class="border">D1</th>
+            <th colspan="2" class="border">H4</th>
+          </tr>
+          <tr>
+            <th class="border">Swing</th>
+            <th class="border">Internal</th>
+            <th class="border">Swing</th>
+            <th class="border">Internal</th>
+          </tr>
+          <tr>
+            <td class="border text-center"><button @click="() => d1SwingTrend = trendReverser[d1SwingTrend]">{{trends[d1SwingTrend]}}</button></td>
+            <td class="border text-center"><button @click="() => d1InternalTrend = trendReverser[d1InternalTrend]">{{trends[d1InternalTrend]}}</button></td>
+            <td class="border text-center"><button @click="() => h4SwingTrend = trendReverser[h4SwingTrend]">{{trends[h4SwingTrend]}}</button></td>
+            <td class="border text-center"><button @click="() => h4InternalTrend = trendReverser[h4InternalTrend]">{{trends[h4InternalTrend]}}</button></td>
+          </tr>
+        </table>
+      </div>
 
+      <div class="col-span-2 md:col-span-1 flex flex-col gap-y-2">
         <h1 class="text-3xl font-bold my-2">Position</h1>
         <div class="flex flex-row md:flex-col gap-2">
           <label class="text-xl flex-row align-middle" for="position">
