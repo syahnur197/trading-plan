@@ -76,6 +76,22 @@ const trendReverser = {
   downtrend: 'uptrend',
 }
 
+const positionSuggestion = {
+  buy: {
+    premium: '<span class="text-red-700">Unwise to buy</span>',
+    discount: '<span class="text-green-700">Wise to buy</span>',
+  },
+  sell: {
+    premium: '<span class="text-green-700">Wise to sell</span>',
+    discount: '<span class="text-red-700">Unwise to Sell</span>',
+  }
+}
+
+const snd = {
+  buy: 'supply',
+  sell: 'demand',
+}
+
 const phases = {
   uptrend: {
     uptrend: {
@@ -99,7 +115,40 @@ const phases = {
   }
 }
 
+const pairs = [
+    'AUDUSD',
+    'EURUSD',
+    'GBPUSD',
+    'NZDUSD',
+    'USDCAD',
+    'USDCHF',
+    'USDJPY',
+    'AUDJPY',
+    'CADJPY',
+    'CHFJPY',
+    'EURJPY',
+    'GBPJPY',
+    'NZDJPY',
+    'AUDCAD',
+    'AUDCHF',
+    'AUDNZD',
+    'EURAUD',
+    'EURCAD',
+    'EURCHF',
+    'EURGBP',
+    'EURNZD',
+    'GBPAUD',
+    'GBPCAD',
+    'GBPCHF',
+    'GBPNZD',
+    'NZDCAD',
+    'NZDCHF',
+    'XAUUSD',
+];
+
 // data
+
+const pair = ref(pairs[0])
 
 const d1SwingTrend = ref('uptrend')
 const d1InternalTrend = ref('uptrend')
@@ -108,10 +157,13 @@ const h4InternalTrend = ref('uptrend')
 const m15SwingTrend = ref('uptrend')
 const m15InternalTrend = ref('uptrend')
 
+const d1Price = ref('discount')
+const h4Price = ref('discount')
+
 const position = ref('buy');
 const executionTf = ref('h4');
 
-// methods
+// computed properties
 
 const getPhase = computed(() => {
   if (executionTf.value === 'd1') {
@@ -125,6 +177,25 @@ const getPhase = computed(() => {
   }
 })
 
+const getQuote = computed(() => tradingQuotes[Math.floor(Math.random() * tradingQuotes.length)])
+const getSnd = computed(() => snd[position.value])
+
+const getD1PositionSuggestion = computed(() => positionSuggestion[position.value][d1Price.value])
+const getHh4PositionSuggestion = computed(() => positionSuggestion[position.value][h4Price.value])
+
+// methods
+
+const getToday = () => {
+  const currentDate = new Date();
+
+  const year = currentDate.getFullYear();
+
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
 const download = () => {
   const style = document.createElement('style');
   document.head.appendChild(style);
@@ -133,7 +204,7 @@ const download = () => {
   html2canvas(document.querySelector("#capture")).then(canvas => {
     style.remove();
     canvas.toBlob(function(blob) {
-        saveAs(blob, "trade-plan.png");
+        saveAs(blob, `${getToday()}-${pair.value}-${executionTf.value}-${position.value}.png`);
     });
   });
 }
@@ -146,16 +217,16 @@ const download = () => {
     <div class="flex flex-row justify-end my-4 px-4">
       <button class="bg-teal-400 py-2 px-4 hover:bg-teal-300 text-teal-800" @click="download">Download</button>
     </div>
-    <div id="capture" class="grid grid-cols-2 gap-x-4 gap-y-4 my-12 px-4 py-4">
-      <div class="col-span-2">
+    <div id="capture" class="grid grid-cols-3 gap-x-4 gap-y-4 my-12 px-4 py-4">
+      <div class="col-span-3">
         <h1 class="text-4xl font-bold">Trading Plan</h1>
         <h3 class="italic text-gray-600">
-          {{tradingQuotes[Math.floor(Math.random() * tradingQuotes.length)]}}
+          {{getQuote}}
         </h3>
       </div>
 
-      <div class="col-span-2 flex flex-col gap-y-2 mb-2">
-        <h1 class="text-3xl font-bold mb-2">Trend</h1>
+      <div class="col-span-3 flex flex-col gap-y-2 mb-2">
+        <h1 class="text-2xl font-bold mb-2">Trend</h1>
 
         <table>
           <tr>
@@ -186,9 +257,15 @@ const download = () => {
         </table>
       </div>
 
-      <div class="col-span-2 md:col-span-1 flex flex-col gap-y-2">
-        <h1 class="text-3xl font-bold my-2">Position</h1>
-        <div class="flex flex-row md:flex-col gap-2">
+      <div class="col-span-1 md:col-span-1 flex flex-col gap-y-2">
+        <h1 class="text-2xl font-bold my-2">Pair</h1>
+        <div class="flex flex-row gap-6">
+          <select autocomplete="on" class="border-b w-2/3 border-gray-400 placeholder-gray-400 text-gray-700" name="pair" v-model="pair">
+            <option v-for="pair in pairs" :value="pair" :key="pair">{{ pair }}</option>
+          </select>
+        </div>
+        <h1 class="text-2xl font-bold my-2">Position</h1>
+        <div class="flex flex-row gap-6">
           <label class="text-xl flex-row align-middle" for="position">
             <input type="radio" name="position" value="buy" v-model="position">
             Buy
@@ -199,8 +276,8 @@ const download = () => {
           </label>
         </div>
 
-        <h1 class="text-3xl font-bold my-2">Execution Timeframe</h1>
-        <div class="flex flex-row md:flex-col gap-2">
+        <h1 class="text-2xl font-bold my-2">Execution Timeframe</h1>
+        <div class="flex flex-row gap-6">
           <label class="text-xl flex-row align-middle" for="executionTf">
             <input type="radio" name="executionTf" value="d1" v-model="executionTf">
             D1
@@ -215,13 +292,40 @@ const download = () => {
           </label>
         </div>
 
-        <h1 class="text-3xl font-bold my-2">Phase</h1>
-        <label class="text-xl font-bold" v-html="getPhase">
-        </label>
+        <h1 class="text-2xl font-bold my-2">Phase</h1>
+        <div class="text-xl font-bold" v-html="getPhase"></div>
       </div>
 
-      <div class="col-span-2 md:col-span-1 flex flex-col gap-y-2">
-        <h1 class="text-3xl font-bold mb-2">Setup</h1>
+      <div class="col-span-1 md:col-span-1 flex flex-col gap-y-2">
+        <h1 class="text-2xl font-bold my-2">Price in D1</h1>
+        <div class="flex flex-row gap-6">
+          <label class="text-xl flex-row align-middle" for="d1Price">
+            <input type="radio" name="d1Price" value="discount" v-model="d1Price">
+            Discount
+          </label>
+          <label class="text-xl flex-row align-middle" for="d1Price">
+            <input type="radio" name="d1Price" value="premium" v-model="d1Price">
+            Premium
+          </label>
+        </div>
+        <div class="text-lg font-bold flex flex-row" v-html="getD1PositionSuggestion"></div>
+
+        <h1 class="text-2xl font-bold my-2">Price in H4</h1>
+        <div class="flex flex-row gap-6">
+          <label class="text-xl flex-row align-middle" for="h4Price">
+            <input type="radio" name="h4Price" value="discount" v-model="h4Price">
+            Discount
+          </label>
+          <label class="text-xl flex-row align-middle" for="h4Price">
+            <input type="radio" name="h4Price" value="premium" v-model="h4Price">
+            Premium
+          </label>
+        </div>
+        <div class="text-lg font-bold flex flex-row" v-html="getHh4PositionSuggestion"></div>
+      </div>
+
+      <div class="col-span-1 md:col-span-1 flex flex-col gap-y-2">
+        <h1 class="text-2xl font-bold mb-2">Setup</h1>
         <label class="text-xl">
           <input type="checkbox">
           Break of Structure
@@ -248,12 +352,12 @@ const download = () => {
         </label>
         <label class="text-xl">
           <input type="checkbox">
-          Plenty of room next to supply/demand
+          Plenty of room next to {{ getSnd }}
         </label>
       </div>
 
-      <div class="col-span-2 flex flex-col gap-y-2">
-        <h1 class="text-3xl font-bold mb-2">Declaration</h1>
+      <div class="col-span-3 flex flex-col gap-y-2">
+        <h1 class="text-2xl font-bold mb-2">Declaration</h1>
         <label class="text-lg">
           <input type="checkbox">
           I have a clear trade plan with defined entry, exit points, and a rationale based on my strategy.
