@@ -360,11 +360,15 @@ const download = () => {
         <h1 class="text-2xl font-bold mb-2">Declaration</h1>
         <label class="text-lg">
           <input type="checkbox">
+          I don't have any trades that correlate with this pair that I'm about to trade.
+        </label>
+        <label class="text-lg">
+          <input type="checkbox">
           I have a clear trade plan with defined entry, exit points, and a rationale based on my strategy.
         </label>
         <label class="text-lg">
           <input type="checkbox">
-          I am risking 0.5% of my capital on this trade and have set a stop-loss order accordingly.
+          I am risking the amount that I'm comfortable to lose on this trade and have set a stop-loss order accordingly.
         </label>
         <label class="text-lg">
           <input type="checkbox">
