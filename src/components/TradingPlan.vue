@@ -132,6 +132,7 @@ const pairs = [
     'AUDCAD',
     'AUDCHF',
     'AUDNZD',
+    'CADCHF',
     'EURAUD',
     'EURCAD',
     'EURCHF',
@@ -150,14 +151,14 @@ const pairs = [
 
 const pair = ref(pairs[0])
 
-const d1SwingTrend = ref('uptrend')
-const d1InternalTrend = ref('uptrend')
+// const d1SwingTrend = ref('uptrend')
+// const d1InternalTrend = ref('uptrend')
 const h4SwingTrend = ref('uptrend')
 const h4InternalTrend = ref('uptrend')
-const m15SwingTrend = ref('uptrend')
-const m15InternalTrend = ref('uptrend')
+// const m15SwingTrend = ref('uptrend')
+// const m15InternalTrend = ref('uptrend')
 
-const d1Price = ref('discount')
+// const d1Price = ref('discount')
 const h4Price = ref('discount')
 
 const position = ref('buy');
@@ -230,29 +231,29 @@ const download = () => {
 
         <table>
           <tr>
-            <th colspan="2" class="border">D1</th>
+<!--            <th colspan="2" class="border">D1</th>-->
             <th colspan="2" class="border">H4</th>
-            <th v-if="executionTf === 'm15'" colspan="2" class="border">M15</th>
+<!--            <th v-if="executionTf === 'm15'" colspan="2" class="border">M15</th>-->
           </tr>
           <tr>
+<!--            <th class="border">Swing</th>-->
+<!--            <th class="border">Internal</th>-->
             <th class="border">Swing</th>
             <th class="border">Internal</th>
-            <th class="border">Swing</th>
-            <th class="border">Internal</th>
-            <template v-if="executionTf === 'm15'">
-              <th class="border">Swing</th>
-              <th class="border">Internal</th>
-            </template>
+<!--            <template v-if="executionTf === 'm15'">-->
+<!--              <th class="border">Swing</th>-->
+<!--              <th class="border">Internal</th>-->
+<!--            </template>-->
           </tr>
           <tr>
-            <td class="border text-center"><button @click="() => d1SwingTrend = trendReverser[d1SwingTrend]">{{trends[d1SwingTrend]}}</button></td>
-            <td class="border text-center"><button @click="() => d1InternalTrend = trendReverser[d1InternalTrend]">{{trends[d1InternalTrend]}}</button></td>
+<!--            <td class="border text-center"><button @click="() => d1SwingTrend = trendReverser[d1SwingTrend]">{{trends[d1SwingTrend]}}</button></td>-->
+<!--            <td class="border text-center"><button @click="() => d1InternalTrend = trendReverser[d1InternalTrend]">{{trends[d1InternalTrend]}}</button></td>-->
             <td class="border text-center"><button @click="() => h4SwingTrend = trendReverser[h4SwingTrend]">{{trends[h4SwingTrend]}}</button></td>
             <td class="border text-center"><button @click="() => h4InternalTrend = trendReverser[h4InternalTrend]">{{trends[h4InternalTrend]}}</button></td>
-            <template v-if="executionTf === 'm15'">
-              <td class="border text-center"><button @click="() => m15SwingTrend = trendReverser[m15SwingTrend]">{{trends[m15SwingTrend]}}</button></td>
-              <td class="border text-center"><button @click="() => m15InternalTrend = trendReverser[m15InternalTrend]">{{trends[m15InternalTrend]}}</button></td>
-            </template>
+<!--            <template v-if="executionTf === 'm15'">-->
+<!--              <td class="border text-center"><button @click="() => m15SwingTrend = trendReverser[m15SwingTrend]">{{trends[m15SwingTrend]}}</button></td>-->
+<!--              <td class="border text-center"><button @click="() => m15InternalTrend = trendReverser[m15InternalTrend]">{{trends[m15InternalTrend]}}</button></td>-->
+<!--            </template>-->
           </tr>
         </table>
       </div>
@@ -278,18 +279,18 @@ const download = () => {
 
         <h1 class="text-2xl font-bold my-2">Execution Timeframe</h1>
         <div class="flex flex-row gap-6">
-          <label class="text-xl flex-row align-middle" for="executionTf">
-            <input type="radio" name="executionTf" value="d1" v-model="executionTf">
-            D1
-          </label>
+<!--          <label class="text-xl flex-row align-middle" for="executionTf">-->
+<!--            <input type="radio" name="executionTf" value="d1" v-model="executionTf">-->
+<!--            D1-->
+<!--          </label>-->
           <label class="text-xl flex-row align-middle" for="executionTf">
             <input type="radio" name="executionTf" value="h4" v-model="executionTf">
             H4
           </label>
-          <label class="text-xl flex-row align-middle" for="executionTf">
-            <input type="radio" name="executionTf" value="m15" v-model="executionTf">
-            M15
-          </label>
+<!--          <label class="text-xl flex-row align-middle" for="executionTf">-->
+<!--            <input type="radio" name="executionTf" value="m15" v-model="executionTf">-->
+<!--            M15-->
+<!--          </label>-->
         </div>
 
         <h1 class="text-2xl font-bold my-2">Phase</h1>
@@ -297,18 +298,18 @@ const download = () => {
       </div>
 
       <div class="col-span-3 md:col-span-1 flex flex-col gap-y-2">
-        <h1 class="text-2xl font-bold my-2">Price in D1</h1>
-        <div class="flex flex-row gap-6">
-          <label class="text-xl flex-row align-middle" for="d1Price">
-            <input type="radio" name="d1Price" value="discount" v-model="d1Price">
-            Discount
-          </label>
-          <label class="text-xl flex-row align-middle" for="d1Price">
-            <input type="radio" name="d1Price" value="premium" v-model="d1Price">
-            Premium
-          </label>
-        </div>
-        <div class="text-lg font-bold flex flex-row" v-html="getD1PositionSuggestion"></div>
+<!--        <h1 class="text-2xl font-bold my-2">Price in D1</h1>-->
+<!--        <div class="flex flex-row gap-6">-->
+<!--          <label class="text-xl flex-row align-middle" for="d1Price">-->
+<!--            <input type="radio" name="d1Price" value="discount" v-model="d1Price">-->
+<!--            Discount-->
+<!--          </label>-->
+<!--          <label class="text-xl flex-row align-middle" for="d1Price">-->
+<!--            <input type="radio" name="d1Price" value="premium" v-model="d1Price">-->
+<!--            Premium-->
+<!--          </label>-->
+<!--        </div>-->
+<!--        <div class="text-lg font-bold flex flex-row" v-html="getD1PositionSuggestion"></div>-->
 
         <h1 class="text-2xl font-bold my-2">Price in H4</h1>
         <div class="flex flex-row gap-6">
